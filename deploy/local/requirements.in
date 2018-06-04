@@ -1,0 +1,16 @@
+cython
+gevent
+greenlet
+gunicorn
+numpy
+pandas
+scikit-learn
+scipy
+skflow
+sklearn
+lightgbm
+h5py
+matplotlib
+tensorflow
+tensorflow-tensorboard
+

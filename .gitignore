@@ -1,0 +1,17 @@
+*.pyc
+*.pyo
+__pycache__/
+.python-version
+.cache
+.eggs
+UNKNOWN.egg-info
+*.log
+*.log.*
+*.h5
+.idea/workspace.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/kaggle-master.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml

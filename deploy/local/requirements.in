@@ -12,5 +12,7 @@ lightgbm
 h5py
 matplotlib
 tensorflow
-tensorflow-tensorboard
+tensorboard
+gensim
+
 

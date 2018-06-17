@@ -11,8 +11,6 @@ sklearn
 lightgbm
 h5py
 matplotlib
-tensorflow-gpu
-tensorflow-tensorboard
 opencv-python
 gensim
 

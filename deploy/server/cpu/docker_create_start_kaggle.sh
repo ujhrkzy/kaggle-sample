@@ -8,10 +8,10 @@
 # exit ABNORMAL END:-
 ##################################################################################
 . kaggle.conf
-nvidia-docker run --name ${CONTAINER_NAME}-$1 \
+docker run --name ${CONTAINER_NAME}-$1 \
   --log-driver=none \
   -it \
   -v /etc/localtime:/etc/localtime:ro \
-  -v ${HOST_ROOT_DIRECTORY}/$1/src:/home/src \
+  -v ${HOST_ROOT_DIRECTORY}/cpu/$1/src:/home/src \
   -v ${HOST_ROOT_DIRECTORY}/res:/home/res \
   ${CONTAINER_NAME}:${VERSION} /bin/bash

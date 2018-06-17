@@ -15,4 +15,4 @@ tensorflow-gpu
 tensorflow-tensorboard
 opencv-python
 gensim
-
+pillow

@@ -14,5 +14,4 @@ matplotlib
 tensorflow
 tensorboard
 gensim
-
-
+pillow

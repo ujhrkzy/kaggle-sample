@@ -7,6 +7,7 @@
 boto3==1.7.40             # via smart-open
 boto==2.48.0              # via smart-open
 botocore==1.10.40         # via boto3, s3transfer
+bleach==1.5.0             # via tensorboard, tensorflow-tensorboard
 bz2file==0.98             # via smart-open
 certifi==2018.4.16        # via requests
 chardet==3.0.4            # via requests

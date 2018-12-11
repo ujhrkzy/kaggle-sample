@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-import re
+import gc
+from datetime import datetime
 
 __author__ = "ujihirokazuya"
 
@@ -11,54 +12,43 @@ pd.options.display.max_columns = 999
 
 data_directory = "/home/res/"
 
-train_df = pd.read_csv(data_directory + "train.csv")
-test_df = pd.read_csv(data_directory + "test.csv")
-# train_df = pd.read_csv("top1000_train.csv")
-# test_df = pd.read_csv("top1000_test.csv")
+# _date_columns = ["activation_date", "date_from", "date_to"]
+_date_columns = ["date_from", "date_to"]
 
 
-train_df = train_df.drop("deal_probability", axis=1)
-
-valid_columns = ["item_id", "title", "description"]
-invalid_columns = [name for name in test_df.columns.values if name not in valid_columns]
-train_df = train_df.drop(invalid_columns, axis=1)
-test_df = test_df.drop(invalid_columns, axis=1)
+def _datetime_converter(value: str):
+    if not isinstance(value, str):
+        return datetime.now()
+    return datetime.strptime(value, "%Y-%m-%d")
 
 
-def _concat(data_frame):
-    data_frame["title_description"] = data_frame["title"] + " title_end " + data_frame["description"].astype(str)
-    return data_frame.drop(["title", "description"], axis=1)
+def _calc_days(value: str):
+    if not isinstance(value, str):
+        return -1
+    values = value.split(" ")
+    t1 = _datetime_converter(values[0])
+    t2 = _datetime_converter(values[1])
+    return (t1 - t2).days
 
 
-train_df = _concat(train_df)
-test_df = _concat(test_df)
+def _convert(data_frame):
+    data_frame["period_from_act"] = data_frame["date_from"] + " " + data_frame["activation_date"]
+    data_frame["period_from_act"] = data_frame["period_from_act"].apply(_calc_days)
+    data_frame["period_to_act"] = data_frame["date_to"] + " " + data_frame["activation_date"]
+    data_frame["period_to_act"] = data_frame["period_to_act"].apply(_calc_days)
+    data_frame["period_to_from"] = data_frame["date_to"] + " " + data_frame["date_from"]
+    data_frame["period_to_from"] = data_frame["period_to_from"].apply(_calc_days)
+    return data_frame.drop(_date_columns, axis=1)
 
 
-def _replace_word(word: str):
-    word = word.replace(":", " ")
-    word = word.replace(";", " ")
-    word = word.replace(",", " ")
-    word = word.replace("/", " ")
-    word = word.replace("!", " ")
-    word = word.replace("?", " ")
-    word = word.replace('"', " ")
-    word = word.replace("'", " ")
-    word = word.replace("-", " ")
-    word = word.replace("+", " ")
-    word = word.replace("\n", " ")
-    word = word.replace("\r\n", " ")
-    word = word.replace("(", " ")
-    word = word.replace(")", " ")
-    word = word.replace("[", " ")
-    word = word.replace("]", " ")
-    word = word.replace("=", " ")
-    word = word.replace(".", " ")
-    word = re.sub(" +", " ", word)
-    return word
+# train_df = pd.read_csv(data_directory + "periods_train.csv", parse_dates=_date_columns)
+train_df = pd.read_csv(data_directory + "periods_train.csv")
+train_df = _convert(train_df)
+train_df.to_csv("preprocessed_period_train.csv", index=False)
+del train_df
+gc.collect()
 
-
-train_df["title_description"] = train_df["title_description"].map(_replace_word)
-test_df["title_description"] = test_df["title_description"].map(_replace_word)
-
-train_df.to_csv("preprocessed_nlp_train.csv", index=False)
-test_df.to_csv("preprocessed_nlp_test.csv", index=False)
+# test_df = pd.read_csv(data_directory + "periods_test.csv", parse_dates=_date_columns)
+test_df = pd.read_csv(data_directory + "periods_test.csv")
+test_df = _convert(test_df)
+test_df.to_csv("preprocessed_period_test.csv", index=False)

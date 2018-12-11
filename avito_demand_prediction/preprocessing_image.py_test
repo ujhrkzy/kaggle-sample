@@ -9,7 +9,6 @@ import operator
 import cv2
 import os
 from kaggle_logger import logger
-import subprocess
 
 
 __author__ = "ujihirokazuya"
@@ -52,13 +51,7 @@ class ImageFeatureExtractor(object):
         self._features = ImageFeatures()
         image_name = image_name + ".jpg"
         self._image_name = image_name
-
-        cmd = "sshpass -p ujihiro0611 scp -rp -P 22 ujihiro@dev.unibo.info:/mnt/ssd/ujihiro/kaggle/res/data/competition_files/test_jpg/{} ./"
-        cmd = cmd.format(self._image_name)
-        subprocess.call(cmd.split(" "))
-
-        # path = os.path.join(image_directory, image_name)
-        path = self._image_name
+        path = os.path.join(image_directory, image_name)
         self._path = path
         # TODO confirm to need converting("RGB")
         self._pillow_image = IMG.open(path)
@@ -89,9 +82,6 @@ class ImageFeatureExtractor(object):
         features.height = dimensions[1]
 
         features.blurriness = self._get_blurriness_score()
-
-        cmd = "rm {}".format(self._image_name)
-        subprocess.call(cmd.split(" "))
         return features
 
     def _get_brightness(self):
@@ -171,8 +161,7 @@ class ImagePreprocessor(object):
 
     def execute(self):
         # train_df = pd.read_csv(data_directory + "train.csv")
-        # train_df = pd.read_csv(data_directory + "test.csv")
-        train_df = pd.read_csv("test.csv")
+        train_df = pd.read_csv(data_directory + "test.csv")
         # train_df = pd.read_csv("top1000_train.csv")
 
         valid_columns = ["item_id", "image"]
@@ -187,8 +176,6 @@ class ImagePreprocessor(object):
         import math
         count = math.ceil(train_df.shape[0] / 1000)
         for i in range(count):
-            if i < 445:
-                continue
             sub_train_df = train_df.iloc[i*1000:(i+1)*1000, :]
             sub_train_df["features"] = sub_train_df["image"].apply(_extract_train_feature)
             sub_train_df = self._convert(sub_train_df)

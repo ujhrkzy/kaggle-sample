@@ -31,5 +31,5 @@ skflow==0.1.0
 sklearn==0.0
 subprocess32==3.5.1       # via matplotlib
 tensorflow-tensorboard==1.5.1
-werkzeug==0.14.1          # via tensorflow-tensorboard
+werkzeug==0.15.3          # via tensorflow-tensorboard
 wheel==0.31.1             # via tensorflow-tensorboard

@@ -6,6 +6,8 @@
 #
 absl-py==0.2.2            # via tensorflow
 astor==0.6.2              # via tensorflow
+backports.functools-lru-cache==1.5  # via matplotlib
+backports.weakref==1.0.post1  # via tensorflow
 bleach==1.5.0             # via tensorboard
 boto3==1.7.40             # via smart-open
 boto==2.48.0              # via smart-open
@@ -16,6 +18,9 @@ chardet==3.0.4            # via requests
 cycler==0.10.0            # via matplotlib
 cython==0.25.2
 docutils==0.14            # via botocore
+enum34==1.1.6             # via grpcio, tensorflow
+funcsigs==1.0.2           # via mock
+futures==3.3.0            # via grpcio, s3transfer, tensorboard
 gast==0.2.0               # via tensorflow
 gensim==3.4.0
 gevent==1.2.0
@@ -30,9 +35,10 @@ kiwisolver==1.0.1         # via matplotlib
 lightgbm==2.1.1
 markdown==2.6.11          # via tensorboard
 matplotlib==2.2.2
+mock==3.0.5               # via tensorflow
 numpy==1.14.3
 pandas==0.19.2
-pillow==5.1.0
+pillow==6.2.0
 protobuf==3.5.2.post1     # via tensorboard, tensorflow
 pyparsing==2.2.0          # via matplotlib
 python-dateutil==2.6.0    # via botocore, matplotlib, pandas
@@ -41,10 +47,11 @@ requests==2.19.1          # via smart-open
 s3transfer==0.1.13        # via boto3
 scikit-learn==0.18.1
 scipy==0.18.1
-six==1.10.0               # via absl-py, bleach, cycler, gensim, grpcio, h5py, html5lib, matplotlib, protobuf, python-dateutil, tensorboard, tensorflow
+six==1.10.0               # via absl-py, bleach, cycler, gensim, grpcio, h5py, html5lib, matplotlib, mock, protobuf, python-dateutil, tensorboard, tensorflow
 skflow==0.1.0
 sklearn==0.0
 smart-open==1.5.7         # via gensim
+subprocess32==3.5.4       # via matplotlib
 tensorboard==1.8.0
 tensorflow==1.8.0
 termcolor==1.1.0          # via tensorflow

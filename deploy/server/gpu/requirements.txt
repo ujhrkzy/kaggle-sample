@@ -4,11 +4,11 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-absl-py==0.2.2            # via tensorflow-gpu
+absl-py==0.8.1            # via tensorboard, tensorflow-gpu
 astor==0.6.2              # via tensorflow-gpu
 backports.functools-lru-cache==1.5  # via matplotlib
 backports.weakref==1.0.post1  # via tensorflow-gpu
-bleach==1.5.0             # via tensorboard, tensorflow-tensorboard
+bleach==1.5.0             # via tensorflow-tensorboard
 boto3==1.7.40             # via smart-open
 boto==2.48.0              # via smart-open
 botocore==1.10.40         # via boto3, s3transfer
@@ -18,29 +18,35 @@ chardet==3.0.4            # via requests
 cycler==0.10.0            # via matplotlib
 cython==0.25.2
 docutils==0.14            # via botocore
-enum34==1.1.6             # via grpcio, tensorflow-gpu
+enum34==1.1.6             # via absl-py, grpcio, tensorflow-gpu
 funcsigs==1.0.2           # via mock
+functools32==3.2.3.post2  # via tensorflow-gpu
 futures==3.1.1            # via grpcio, s3transfer, tensorboard, tensorflow-tensorboard
-gast==0.2.0               # via tensorflow-gpu
+gast==0.2.2               # via tensorflow-gpu
 gensim==3.4.0
 gevent==1.2.0
+google-pasta==0.1.8       # via tensorflow-gpu
 greenlet==0.4.11
-grpcio==1.12.0            # via tensorflow-gpu
+grpcio==1.12.0            # via tensorboard, tensorflow-gpu
 gunicorn==19.6.0
 h5py==2.7.1
-html5lib==0.9999999       # via bleach, tensorboard, tensorflow-tensorboard
+html5lib==0.9999999       # via bleach, tensorflow-tensorboard
 idna==2.7                 # via requests
 jmespath==0.9.3           # via boto3, botocore
+keras-applications==1.0.8  # via tensorflow-gpu
+keras-preprocessing==1.1.0  # via tensorflow-gpu
 kiwisolver==1.0.1         # via matplotlib
 lightgbm==2.1.1
 markdown==2.6.11          # via tensorboard, tensorflow-tensorboard
 matplotlib==2.2.2
 mock==2.0.0               # via tensorflow-gpu
-numpy==1.14.3
+numpy==1.16.5
 opencv-python==3.4.1.15
+opt-einsum==2.3.2         # via tensorflow-gpu
 pandas==0.19.2
 pbr==4.0.3                # via mock
-protobuf==3.5.2.post1     # via tensorboard, tensorflow-gpu, tensorflow-tensorboard
+pillow==6.2.1
+protobuf==3.11.1          # via tensorboard, tensorflow-gpu, tensorflow-tensorboard
 pyparsing==2.2.0          # via matplotlib
 python-dateutil==2.6.0    # via botocore, matplotlib, pandas
 pytz==2016.10             # via matplotlib, pandas
@@ -48,15 +54,17 @@ requests==2.19.1          # via smart-open
 s3transfer==0.1.13        # via boto3
 scikit-learn==0.18.1
 scipy==0.18.1
-six==1.10.0               # via absl-py, bleach, cycler, gensim, grpcio, h5py, html5lib, matplotlib, mock, protobuf, python-dateutil, tensorboard, tensorflow-gpu, tensorflow-tensorboard
+six==1.10.0               # via absl-py, bleach, cycler, gensim, google-pasta, grpcio, h5py, html5lib, keras-preprocessing, matplotlib, mock, protobuf, python-dateutil, tensorboard, tensorflow-gpu, tensorflow-tensorboard
 skflow==0.1.0
 sklearn==0.0
 smart-open==1.5.7         # via gensim
 subprocess32==3.5.1       # via matplotlib
-tensorboard==1.8.0        # via tensorflow-gpu
-tensorflow-gpu==1.8.0
+tensorboard==1.15.0       # via tensorflow-gpu
+tensorflow-estimator==1.15.1  # via tensorflow-gpu
+tensorflow-gpu==1.15.0
 tensorflow-tensorboard==1.5.1
 termcolor==1.1.0          # via tensorflow-gpu
 urllib3==1.23             # via requests
 werkzeug==0.14.1          # via tensorboard, tensorflow-tensorboard
 wheel==0.31.1             # via tensorboard, tensorflow-gpu, tensorflow-tensorboard
+wrapt==1.11.2             # via tensorflow-gpu

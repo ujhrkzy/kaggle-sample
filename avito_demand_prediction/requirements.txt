@@ -13,7 +13,7 @@ gevent==1.2.0
 greenlet==0.4.11
 gunicorn==19.6.0
 h5py==2.7.1
-html5lib==0.9999999       # via bleach, tensorflow-tensorboard
+html5lib==0.999999999       # via bleach, tensorflow-tensorboard
 kiwisolver==1.0.1         # via matplotlib
 lightgbm==2.1.1
 markdown==2.6.11          # via tensorflow-tensorboard
